@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAMPUSNAV-AI</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CAMPUSNAV-AI</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="navigation-form">
+            <h2>Inside Campus Navigation</h2>
+            <div class="form-container">
+                <label for="source">Source Location:</label>
+                <select id="source">
+                    <option value="">Select a location</option>
+                    <option value="Administrative Block">Administrative Block</option>
+                    <option value="Aryabhatt Lab">Aryabhatt Lab</option>
+                    <option value="Badminton Court">Badminton Court</option>
+                    <option value="Bank/ATM">Bank/ATM</option>
+                    <option value="BasketBall Court">BasketBall Court</option>
+                    <option value="Boys Hostel(Chandra Shekhar Azad)">Boys Hostel(Chandra Shekhar Azad)</option>
+                    <option value="Boys Hostel(Sardar Patel)">Boys Hostel(Sardar Patel)</option>
+                    <option value="Bus Stand">Bus Stand</option>
+                    <option value="Canteen">Canteen</option>
+                    <option value="Chairman's Residence">Chairman's Residence</option>
+                    <option value="Chancellor's Residence">Chancellor's Residence</option>
+                    <option value="Convention Centre /Underground Parking">Convention Centre /Underground Parking</option>
+                    <option value="CS/IT Block">CS/IT Block</option>
+                    <option value="Dept. of Allied Sciences">Dept. of Allied Sciences</option>
+                    <option value="Dept. of Biotech">Dept. of Biotech</option>
+                    <option value="Dept. of Civil Engg.">Dept. of Civil Engg.</option>
+                    <option value="Dept. of Electrical Engg.">Dept. of Electrical Engg.</option>
+                    <option value="Dept. of Electronics Eng.">Dept. of Electronics Engg.</option>
+                    <option value="Dept. of Management/Chanakya block">Dept. of Management/Chanakya blockt</option>
+                    <option value="Santoshanand Library Block">Santoshanand Library Block</option>
+                    <option value="Dept. of Mech. & Automobile Engg.">Dept. of Mech. & Automobile Engg.</option>
+                    <option value="Dept. of Mech. & Automobile Engg. Workshop">Dept. of Mech. & Automobile Engg. Workshop</option>
+                    <option value="Dept. of Petroleum Engg.">Dept. of Petroleum Engg.</option>
+                    <option value="Entrance Gate 2">Entrance Gate 2</option>
+                    <option value="Entrance Gate1">Entrance Gate 1</option>
+                    <option value="GEU Main Ground">GEU Main Ground</option>
+                    <option value="Girls Hostel (Sarojini)">Girls Hostel (Sarojini)</option>
+                    <option value="Girls Hostel(LaxmiBai)">Girls Hostel(LaxmiBai)</option>
+                    <option value="Girls Hostel(Priyadarshini)">Girls Hostel(Priyadarshini)</option>
+                    <option value="Graphic Era Global School(prep)">Graphic Era Global School(prep)</option>
+                    <option value="Guest House 1">Guest House 1</option>
+                    <option value="Old MCA block">Old MCA block</option>
+                    <option value="Param Computer Lab">Param Computer Lab</option>
+                    <option value="QuickBite Cafe">QuickBite Cafe</option>
+                    <option value="Santoshanand Library Block">Santoshanand Library Block</option>
+                    <option value="Security/Tuck Shop/Dispensary">Security/Tuck Shop/Dispensary</option>
+                    <option value="Student Community Centre">Student Community Centre</option>
+                    <option value="Subway/Tunnel">Subway/Tunnel</option>
+                </select>
+
+                <label for="destination">Destination Location:</label>
+                <select id="destination">
+                    <option value="">Select a location</option>
+                    <option value="Administrative Block">Administrative Block</option>
+                    <option value="Aryabhatt Lab">Aryabhatt Lab</option>
+                    <option value="Badminton Court">Badminton Court</option>
+                    <option value="Bank/ATM">Bank/ATM</option>
+                    <option value="BasketBall Court">BasketBall Court</option>
+                    <option value="Boys Hostel(Chandra Shekhar Azad)">Boys Hostel(Chandra Shekhar Azad)</option>
+                    <option value="Boys Hostel(Sardar Patel)">Boys Hostel(Sardar Patel)</option>
+                    <option value="Bus Stand">Bus Stand</option>
+                    <option value="Canteen">Canteen</option>
+                    <option value="Chairman's Residence">Chairman's Residence</option>
+                    <option value="Chancellor's Residence">Chancellor's Residence</option>
+                    <option value="Convention Centre /Underground Parking">Convention Centre /Underground Parking</option>
+                    <option value="CS/IT Block">CS/IT Block</option>
+                    <option value="Dept. of Allied Sciences">Dept. of Allied Sciences</option>
+                    <option value="Dept. of Biotech">Dept. of Biotech</option>
+                    <option value="Dept. of Civil Engg.">Dept. of Civil Engg.</option>
+                    <option value="Dept. of Electrical Engg.">Dept. of Electrical Engg.</option>
+                    <option value="Dept. of Electronics Eng.">Dept. of Electronics Engg.</option>
+                    <option value="Dept. of Management/Chanakya block">Dept. of Management/Chanakya blockt</option>
+                    <option value="Santoshanand Library Block">Santoshanand Library Block</option>
+                    <option value="Dept. of Mech. & Automobile Engg.">Dept. of Mech. & Automobile Engg.</option>
+                    <option value="Dept. of Mech. & Automobile Engg. Workshop">Dept. of Mech. & Automobile Engg. Workshop</option>
+                    <option value="Dept. of Petroleum Engg.">Dept. of Petroleum Engg.</option>
+                    <option value="Entrance Gate 2">Entrance Gate 2</option>
+                    <option value="Entrance Gate1">Entrance Gate 1</option>
+                    <option value="GEU Main Ground">GEU Main Ground</option>
+                    <option value="Girls Hostel (Sarojini)">Girls Hostel (Sarojini)</option>
+                    <option value="Girls Hostel(LaxmiBai)">Girls Hostel(LaxmiBai)</option>
+                    <option value="Girls Hostel(Priyadarshini)">Girls Hostel(Priyadarshini)</option>
+                    <option value="Graphic Era Global School(prep)">Graphic Era Global School(prep)</option>
+                    <option value="Guest House 1">Guest House 1</option>
+                    <option value="Old MCA block">Old MCA block</option>
+                    <option value="Param Computer Lab">Param Computer Lab</option>
+                    <option value="QuickBite Cafe">QuickBite Cafe</option>
+                    <option value="Santoshanand Library Block">Santoshanand Library Block</option>
+                    <option value="Security/Tuck Shop/Dispensary">Security/Tuck Shop/Dispensary</option>
+                    <option value="Student Community Centre">Student Community Centre</option>
+                    <option value="Subway/Tunnel">Subway/Tunnel</option>
+                </select>
+
+                <label for="algorithm">Algorithm:</label>
+                <select id="algorithm">
+                    <option value="bfs">BFS (Fewest Steps)</option>
+                    <option value="dijkstra">Dijkstra (Shortest Distance)</option>
+                </select>
+
+                <button onclick="findPath()">Find Path</button>
+            </div>
+
+            <div class="path-result">
+                <h3>Path:</h3>
+                <div id="path"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 CAMPUSNAV-AI. All rights reserved.</p>
+    </footer>
+    <script src="./js/navigation.js"></script>
+</body>
+</html>
