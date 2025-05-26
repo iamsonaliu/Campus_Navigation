@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outside Navigation - CAMPUSNAV-AI</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>CAMPUSNAV-AI - Outside Campus Navigation</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/navigation.js" defer></script>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <h1>CAMPUSNAV-AI</h1>
     </header>
 
-    <!-- Navigation Bar -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -21,19 +20,43 @@
         </ul>
     </nav>
 
-    <!-- Main Content -->
     <main>
-        <section class="placeholder">
+        <section class="navigation-form">
             <h2>Outside Campus Navigation</h2>
-            <p>Coming Soon! This section will help you navigate to external locations like hostels, hill campus, and the agriculture block.</p>
+            <div class="form-container">
+                <label for="source">Source Location:</label>
+                <select id="source" required>
+                    <option value="" disabled selected>Select a location</option>
+                </select>
+
+                <label for="destination">Destination Location:</label>
+                <select id="destination" required>
+                    <option value="" disabled selected>Select a location</option>
+                </select>
+
+                <label for="algorithm">Algorithm:</label>
+                <select id="algorithm">
+                    <option value="bfs">BFS (Fewest Steps)</option>
+                    <option value="dijkstra">Dijkstra (Shortest Distance)</option>
+                </select>
+
+                <button onclick="findPath()">Find Path</button>
+            </div>
+
+            <div class="path-result">
+                <h3>Path:</h3>
+                <div id="path"></div>
+            </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <p>© 2025 CAMPUSNAV-AI. All rights reserved.</p>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        // Load nodes for outer campus
+        document.addEventListener('DOMContentLoaded', () => loadNodes('outer'));
+    </script>
 </body>
 </html>

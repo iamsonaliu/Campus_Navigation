@@ -19,39 +19,45 @@ public class GraphService {
     @Autowired
     private DatabaseAccess databaseAccess;
 
-    private Map<Node, List<WeightedEdge>> weightedGraph;
+    private Map<String, Map<Node, List<WeightedEdge>>> campusGraphs;
 
     @PostConstruct
     public void init() {
-        logger.info("Starting graph initialization");
-        try {
-            weightedGraph = buildWeightedGraph();
-            if (weightedGraph.isEmpty()) {
-                logger.warn("Weighted graph is empty after initialization");
-            } else {
-                logger.info("Graph initialized with {} nodes", weightedGraph.size());
+        logger.info("Starting graph initialization for all campuses");
+        campusGraphs = new HashMap<>();
+        String[] campuses = {"deemed", "hill", "outer"};
+        for (String campus : campuses) {
+            try {
+                Map<Node, List<WeightedEdge>> graph = buildWeightedGraph(campus);
+                campusGraphs.put(campus, graph);
+                if (graph.isEmpty()) {
+                    logger.warn("Weighted graph for campus {} is empty after initialization", campus);
+                } else {
+                    logger.info("Graph for campus {} initialized with {} nodes", campus, graph.size());
+                }
+            } catch (Exception e) {
+                logger.error("Failed to initialize weighted graph for campus {}: {}", campus, e.getMessage(), e);
+                campusGraphs.put(campus, new HashMap<>()); // Fallback to empty graph
             }
-        } catch (Exception e) {
-            logger.error("Failed to initialize weighted graph: {}", e.getMessage(), e);
-            weightedGraph = new HashMap<>(); // Fallback to empty graph
         }
     }
 
-    private Map<Node, List<WeightedEdge>> buildWeightedGraph() {
-        logger.info("Building weighted graph");
+    private Map<Node, List<WeightedEdge>> buildWeightedGraph(String campus) {
+        logger.info("Building weighted graph for campus {}", campus);
         Map<Node, List<WeightedEdge>> graph = new HashMap<>();
-        List<Node> nodes = databaseAccess.findAllNodes();
-        logger.debug("Found {} nodes", nodes.size());
+        List<Node> nodes = databaseAccess.findAllNodes(campus);
+        logger.debug("Found {} nodes for campus {}", nodes.size(), campus);
         for (Node node : nodes) {
             graph.putIfAbsent(node, new ArrayList<>());
         }
-        List<Edge> edges = databaseAccess.findAllEdges();
-        logger.debug("Found {} edges", edges.size());
+        List<Edge> edges = databaseAccess.findAllEdges(campus);
+        logger.debug("Found {} edges for campus {}", edges.size(), campus);
         for (Edge edge : edges) {
             Node fromNode = edge.getFromNode();
             Node toNode = edge.getToNode();
             if (fromNode == null || toNode == null) {
-                logger.warn("Skipping invalid edge: fromNodeId={}, toNodeId={}", 
+                logger.warn("Skipping invalid edge for campus {}: fromNodeId={}, toNodeId={}", 
+                    campus, 
                     edge.getFromNode() != null ? edge.getFromNode().getNodeId() : "null", 
                     edge.getToNode() != null ? edge.getToNode().getNodeId() : "null");
                 continue;
@@ -59,29 +65,29 @@ public class GraphService {
             double weight = edge.getWeight();
             graph.computeIfAbsent(fromNode, k -> new ArrayList<>()).add(new WeightedEdge(toNode, weight));
             graph.computeIfAbsent(toNode, k -> new ArrayList<>()).add(new WeightedEdge(fromNode, weight));
-            logger.debug("Added edge: {} -> {} (weight: {})", fromNode.getName(), toNode.getName(), weight);
+            logger.debug("Added edge for campus {}: {} -> {} (weight: {})", campus, fromNode.getName(), toNode.getName(), weight);
         }
         return graph;
     }
 
-    public void rebuildGraph() {
-        logger.info("Rebuilding graph on demand");
-        weightedGraph = buildWeightedGraph();
+    public void rebuildGraph(String campus) {
+        logger.info("Rebuilding graph for campus {}", campus);
+        campusGraphs.put(campus, buildWeightedGraph(campus));
     }
 
-    public List<Node> findShortestPath(String startLocation, String endLocation, String algorithm) {
-        logger.info("Finding shortest path from {} to {} using {}", startLocation, endLocation, algorithm);
-        rebuildGraph(); // Ensure latest edges are loaded
-        if (weightedGraph == null) {
-            throw new IllegalStateException("Graph is not initialized");
+    public List<Node> findShortestPath(String startLocation, String endLocation, String algorithm, String campus) {
+        logger.info("Finding shortest path from {} to {} using {} for campus {}", startLocation, endLocation, algorithm, campus);
+        Map<Node, List<WeightedEdge>> weightedGraph = campusGraphs.getOrDefault(campus.toLowerCase(), new HashMap<>());
+        if (weightedGraph.isEmpty()) {
+            throw new IllegalStateException("Graph for campus " + campus + " is not initialized");
         }
-        Optional<Node> startNodeOpt = databaseAccess.findNodeByName(startLocation);
-        Optional<Node> endNodeOpt = databaseAccess.findNodeByName(endLocation);
+        Optional<Node> startNodeOpt = databaseAccess.findNodeByName(startLocation, campus);
+        Optional<Node> endNodeOpt = databaseAccess.findNodeByName(endLocation, campus);
         if (startNodeOpt.isEmpty()) {
-            throw new IllegalArgumentException("Start location not found: " + startLocation);
+            throw new IllegalArgumentException("Start location not found: " + startLocation + " in campus " + campus);
         }
         if (endNodeOpt.isEmpty()) {
-            throw new IllegalArgumentException("End location not found: " + endLocation);
+            throw new IllegalArgumentException("End location not found: " + endLocation + " in campus " + campus);
         }
         Node startNode = startNodeOpt.get();
         Node endNode = endNodeOpt.get();

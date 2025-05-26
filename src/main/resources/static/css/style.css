@@ -59,50 +59,7 @@ main {
     padding: 0 1rem;
 }
 
-/* Introduction Section (Homepage) */
-.intro {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.intro h2 {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-}
-
-.intro p {
-    font-size: 1.1rem;
-    color: #666;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Sections (Buttons on Homepage) */
-.sections {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-.btn {
-    display: inline-block;
-    background-color: #1abc9c;
-    color: white;
-    text-decoration: none;
-    padding: 1rem 2rem;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    transition: background-color 0.3s, transform 0.1s;
-}
-
-.btn:hover {
-    background-color: #16a085;
-    transform: scale(1.05);
-}
-
-/* Navigation Form (Inside Navigation Page) */
+/* Navigation Form */
 .navigation-form {
     background-color: white;
     padding: 2rem;
@@ -180,52 +137,9 @@ main {
     border: 1px solid #ddd;
 }
 
-/* Placeholder Pages */
-.placeholder {
-    text-align: center;
-    padding: 3rem;
-}
-
-.placeholder h2 {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-}
-
-.placeholder p {
-    font-size: 1.1rem;
-    color: #666;
-}
-
-/* About Us and Contact Pages */
-.about-us,
-.contact {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.about-us h2,
-.contact h2 {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-}
-
-.about-us h3 {
-    font-size: 1.5rem;
-    color: #34495e;
-    margin: 1rem 0;
-}
-
-.about-us p,
-.contact p {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 1rem;
+#path.error {
+    color: #e74c3c;
+    border-color: #e74c3c;
 }
 
 /* Footer */
@@ -249,16 +163,6 @@ footer {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
-    }
-
-    .sections {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .btn {
-        width: 80%;
-        text-align: center;
     }
 
     .navigation-form {

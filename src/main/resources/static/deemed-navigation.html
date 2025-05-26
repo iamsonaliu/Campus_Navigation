@@ -3,25 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/">
-    <title>CAMPUSNAV-AI - Inside Campus Navigation</title>
+    <title>CAMPUSNAV-AI - Deemed Campus Navigation</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/navigation.js" defer></script>
-    <style>
-        .error {
-            color: red;
-            font-weight: bold;
-        }
-        #campus-name.error {
-            color: red;
-        }
-        select:invalid {
-            color: gray;
-        }
-        select option[value=""][disabled] {
-            display: none;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -38,7 +22,7 @@
 
     <main>
         <section class="navigation-form">
-            <h2>Inside <span id="campus-name">Campus</span> Navigation</h2>
+            <h2>Deemed Campus Navigation</h2>
             <div class="form-container">
                 <label for="source">Source Location:</label>
                 <select id="source" required>
@@ -69,5 +53,10 @@
     <footer>
         <p>© 2025 CAMPUSNAV-AI. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Load nodes for deemed campus
+        document.addEventListener('DOMContentLoaded', () => loadNodes('deemed'));
+    </script>
 </body>
-</html>
+</html> 

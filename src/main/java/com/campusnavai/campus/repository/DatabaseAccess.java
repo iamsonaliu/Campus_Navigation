@@ -20,31 +20,34 @@ public class DatabaseAccess {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<Node> findAllNodes() {
+    public List<Node> findAllNodes(String campus) {
         try {
-            String sql = "SELECT * FROM nodes";
+            String tableName = getNodeTableName(campus);
+            String sql = "SELECT * FROM " + tableName;
             return jdbcTemplate.query(sql, (rs, rowNum) -> mapRowToNode(rs));
         } catch (DataAccessException e) {
-            throw new RuntimeException("Failed to fetch nodes: " + e.getMessage(), e);
+            throw new RuntimeException("Failed to fetch nodes for campus " + campus + ": " + e.getMessage(), e);
         }
     }
 
     @SuppressWarnings("deprecation")
-    public Optional<Node> findNodeByName(String name) {
+    public Optional<Node> findNodeByName(String name, String campus) {
         try {
-            String sql = "SELECT * FROM nodes WHERE name = ?";
+            String tableName = getNodeTableName(campus);
+            String sql = "SELECT * FROM " + tableName + " WHERE name = ?";
             List<Node> nodes = jdbcTemplate.query(sql, new Object[]{name}, (rs, rowNum) -> mapRowToNode(rs));
             return nodes.isEmpty() ? Optional.empty() : Optional.of(nodes.get(0));
         } catch (DataAccessException e) {
-            throw new RuntimeException("Failed to fetch node by name '" + name + "': " + e.getMessage(), e);
+            throw new RuntimeException("Failed to fetch node by name '" + name + "' for campus " + campus + ": " + e.getMessage(), e);
         }
     }
 
-    public List<Edge> findAllEdges() {
+    public List<Edge> findAllEdges(String campus) {
         try {
             Map<Long, Node> nodeMap = new HashMap<>();
-            findAllNodes().forEach(node -> nodeMap.put(node.getNodeId(), node));
-            String sql = "SELECT * FROM edges";
+            findAllNodes(campus).forEach(node -> nodeMap.put(node.getNodeId(), node));
+            String tableName = getEdgeTableName(campus);
+            String sql = "SELECT * FROM " + tableName;
             List<Edge> edges = jdbcTemplate.query(sql, (rs, rowNum) -> {
                 Edge edge = new Edge();
                 edge.setEdgeId(rs.getLong("edge_id"));
@@ -53,7 +56,7 @@ public class DatabaseAccess {
                 Node fromNode = nodeMap.get(fromNodeId);
                 Node toNode = nodeMap.get(toNodeId);
                 if (fromNode == null || toNode == null) {
-                    logger.warn("Skipping invalid edge: from_node={}, to_node={}", fromNodeId, toNodeId);
+                    logger.warn("Skipping invalid edge for campus {}: from_node={}, to_node={}", campus, fromNodeId, toNodeId);
                     return null; // Skip invalid edges
                 }
                 edge.setFromNode(fromNode);
@@ -63,10 +66,10 @@ public class DatabaseAccess {
                 return edge;
             });
             List<Edge> validEdges = edges.stream().filter(Objects::nonNull).toList();
-            logger.info("Loaded {} valid edges", validEdges.size());
+            logger.info("Loaded {} valid edges for campus {}", validEdges.size(), campus);
             return validEdges;
         } catch (DataAccessException e) {
-            throw new RuntimeException("Failed to fetch edges: " + e.getMessage(), e);
+            throw new RuntimeException("Failed to fetch edges for campus " + campus + ": " + e.getMessage(), e);
         }
     }
 
@@ -81,5 +84,23 @@ public class DatabaseAccess {
         node.setLongitude(rs.getDouble("longitude"));
         if (rs.wasNull()) node.setLongitude(null);
         return node;
+    }
+
+    private String getNodeTableName(String campus) {
+        return switch (campus.toLowerCase()) {
+            case "deemed" -> "nodes";
+            case "hill" -> "nodes_hill";
+            case "outer" -> "nodes_outer";
+            default -> throw new IllegalArgumentException("Invalid campus: " + campus);
+        };
+    }
+
+    private String getEdgeTableName(String campus) {
+        return switch (campus.toLowerCase()) {
+            case "deemed" -> "edges";
+            case "hill" -> "edges_hill";
+            case "outer" -> "edges_outer";
+            default -> throw new IllegalArgumentException("Invalid campus: " + campus);
+        };
     }
 }
