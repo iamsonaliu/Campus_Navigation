@@ -1,0 +1,137 @@
+/* Campus Selection page specific styles */
+
+.campus-hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(52, 152, 219, 0.9)),
+                url('../images/campus-hero.jpg') center/cover;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+}
+
+.campus-hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.campus-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Campus cards section */
+.campus-selection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.campus-card {
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    height: 400px;
+}
+
+.campus-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.campus-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.campus-card:hover .campus-image {
+    transform: scale(1.1);
+}
+
+.campus-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+        to top,
+        rgba(44, 62, 80, 0.9) 0%,
+        rgba(44, 62, 80, 0.7) 50%,
+        transparent 100%
+    );
+    padding: 2rem;
+    color: white;
+    text-align: center;
+}
+
+.campus-overlay h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.campus-overlay p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.select-btn {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.select-btn:hover {
+    background: white;
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Animation delays */
+.campus-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .campus-hero {
+        padding: 3rem 1rem;
+    }
+
+    .campus-hero h2 {
+        font-size: 2rem;
+    }
+
+    .campus-selection {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .campus-card {
+        height: 300px;
+    }
+
+    .campus-overlay h3 {
+        font-size: 1.5rem;
+    }
+} 

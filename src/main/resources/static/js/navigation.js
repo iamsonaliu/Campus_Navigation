@@ -197,3 +197,30 @@ document.addEventListener('DOMContentLoaded', () => {
     
     loadNodes(campus);
 });
+
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize WOW.js for animations
+    new WOW().init();
+
+    // Get all navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Add click event listener to each navigation link
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            
+            // Get the target page from the href attribute
+            const targetPage = this.getAttribute('href');
+            
+            // Add exit animation to current page
+            document.body.classList.add('animate__animated', 'animate__fadeOut');
+            
+            // Wait for animation to complete then navigate
+            setTimeout(() => {
+                window.location.href = targetPage;
+            }, 500);
+        });
+    });
+});

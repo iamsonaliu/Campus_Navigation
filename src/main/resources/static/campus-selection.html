@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAMPUSNAV-AI - Select Campus</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <title>Select Campus - CAMPUSNAV-AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/campus-selection.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="./js/main.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>CAMPUSNAV-AI</h1>
+    <header class="animate__animated animate__fadeIn">
+        <div class="logo-container">
+            <h1>CAMPUSNAV-AI</h1>
+        </div>
     </header>
 
-    <nav>
+    <nav class="animate__animated animate__slideInDown">
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about-us.html">About Us</a></li>
@@ -20,24 +26,38 @@
     </nav>
 
     <main>
+        <section class="campus-hero wow animate__animated animate__fadeIn">
+            <h2>Select Your Campus</h2>
+            <p>Choose your campus to start navigating through its facilities and discover the best routes to your destination.</p>
+        </section>
+
         <section class="campus-selection">
-            <h2>Select Campus</h2>
-            <div class="campus-cards">
-                <a href="deemed-navigation.html" class="campus-card">
-                    <h3>Deemed Campus</h3>
-                    <p>Navigate through the main deemed campus buildings and facilities.</p>
-                </a>
-                
-                <a href="hill-navigation.html" class="campus-card">
+            <div class="campus-card wow animate__animated animate__fadeInLeft">
+                <img src="./images/icons/hill.jpeg" alt="Hill Campus" class="campus-image">
+                <div class="campus-overlay">
                     <h3>Hill Campus</h3>
-                    <p>Find your way around the hill campus locations.</p>
-                </a>
+                    <p>Navigate through the scenic hill campus with its modern facilities and beautiful surroundings.</p>
+                    <a href="hill-navigation.html" class="select-btn">Select Hill Campus</a>
+                </div>
+            </div>
+
+            <div class="campus-card wow animate__animated animate__fadeInRight">
+                <img src="./images/icons/deemed-campus.jpg" alt="Deemed Campus" class="campus-image">
+                <div class="campus-overlay">
+                    <h3>Deemed Campus</h3>
+                    <p>Explore the expansive deemed campus with its state-of-the-art infrastructure and facilities.</p>
+                    <a href="deemed-navigation.html" class="select-btn">Select Deemed Campus</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="animate__animated animate__fadeIn">
         <p>© 2025 CAMPUSNAV-AI. All rights reserved.</p>
     </footer>
+
+    <script>
+        new WOW().init();
+    </script>
 </body>
 </html>

@@ -4,38 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAMPUSNAV-AI</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/main.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/home.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="./js/navigation.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>CAMPUSNAV-AI</h1>
+    <header class="animate__animated animate__fadeIn">
+        <div class="logo-container">
+            <h1>CAMPUSNAV-AI</h1>
+        </div>
     </header>
 
-    <nav>
+    <nav class="animate__animated animate__slideInDown">
         <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="./index.html" class="active">Home</a></li>
+            <li><a href="./about-us.html">About Us</a></li>
+            <li><a href="./contact.html">Contact</a></li>
         </ul>
     </nav>
 
     <main>
-        <section class="intro">
+        <section class="intro wow animate__animated animate__fadeIn">
             <h2>Welcome to CAMPUSNAV-AI</h2>
             <p>CAMPUSNAV-AI is your ultimate navigation companion for the campus and beyond! Whether you're exploring inside the campus, navigating to external locations like hostels or the hill campus, viewing your live location on a map, or seeking assistance from our Hill Campus Bot, we've got you covered. Choose a section below to get started.</p>
         </section>
 
-        <section class="sections">
-            <a href="campus-selection.html" class="btn">Inside Navigation</a>
-            <a href="outside-navigation.html" class="btn">Outside Navigation</a>
-            <a href="see-on-map.html" class="btn">See on Map</a>
-            <a href="ask-the-bot.html" class="btn">Ask the Bot</a>
-        </section>
+<section class="sections">
+    <a href="./campus-selection.html" class="card wow animate__animated animate__fadeInUp" style="text-decoration: none; color: inherit;">
+        <div class="card-content">
+            <div class="icon-container icon-indoor"></div>
+            <h3 class="card-title">Inside Navigation</h3>
+        </div>
+    </a>
+    
+    <a href="./outside-navigation.html" class="card wow animate__animated animate__fadeInUp" data-wow-delay="0.2s" style="text-decoration: none; color: inherit;">
+        <div class="card-content">
+            <div class="icon-container icon-outdoor"></div>
+            <h3 class="card-title">Outside Navigation</h3>
+        </div>
+    </a>
+
+    <a href="./see-on-map.html" class="card wow animate__animated animate__fadeInUp" data-wow-delay="0.4s" style="text-decoration: none; color: inherit;">
+        <div class="card-content">
+            <div class="icon-container icon-map"></div>
+            <h3 class="card-title">See on Map</h3>
+        </div>
+    </a>
+
+    <a href="./ask-the-bot.html" class="card wow animate__animated animate__fadeInUp" data-wow-delay="0.6s" style="text-decoration: none; color: inherit;">
+        <div class="card-content">
+            <div class="icon-container icon-bot"></div>
+            <h3 class="card-title">Ask the Bot</h3>
+        </div>
+    </a>
+</section>
+
+        
     </main>
 
-    <footer>
+    <footer class="animate__animated animate__fadeIn">
         <p>© 2025 CAMPUSNAV-AI. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new WOW().init();
+        });
+    </script>
 </body>
 </html>
