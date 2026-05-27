@@ -94,7 +94,7 @@ const ChatbotViewer = () => {
   return (
     <div id="chatbot-viewer" className="chatbot-section">
       <div className="section-header" style={{ textAlign: 'center' }}>
-        <h2>Assistant Virtuel</h2>
+        <h2>Virtual Assistant</h2>
       </div>
 
       <div className="chatbot-card">

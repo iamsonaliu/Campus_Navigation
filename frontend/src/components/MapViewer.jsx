@@ -367,7 +367,7 @@ const MapViewer = ({ campusMode, setCampusMode }) => {
   return (
     <div id="map-viewer" className="map-viewer-container">
       <div className="section-header">
-        <h2>Navigateur Interactif</h2>
+        <h2>Interactive Navigator</h2>
       </div>
 
       <div className="map-grid">
